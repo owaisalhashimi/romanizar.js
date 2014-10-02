@@ -1,0 +1,138 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background-color: #fff;
+}
+
+body {
+	font-family: Arial,sans-serif;
+	font-size: 1.25em;
+	line-height: 1.66;
+	background-color: transparent;
+	color: #757575;
+}
+
+main {
+	width: 45em;
+	margin: 1.66em auto;
+	padding: 1.66em;
+	background-color: #fff;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size: 1em;
+	font-family: Arial,sans-serif;
+	margin: 0.83em 0;
+}
+
+kbd {
+	display: inline-block;
+	font-family: Consolas,monospace;
+	padding: 0 0.4em;
+	border: 1px solid;
+	border-radius: 3px;
+}
+
+main > h1 {
+	text-transform: uppercase;
+}
+button {
+	padding: 0.4em;
+	background-color: transparent;
+	border: 1px solid;
+	border-color: #aaa;
+	margin: 0.83em 0;
+}
+button:focus {
+	outline: 0 none;
+}
+button svg {
+	display: block;
+}
+button path {
+	fill: #757575;
+}
+
+code {
+	font-family: Consolas,monospace;
+	color: SeaGreen;
+}
+
+table {
+	table-layout: fixed;
+	width: auto;
+	border-spacing: 0;
+}
+th {
+	font-family: Arial,sans-serif;
+	color: #aaa;
+}
+th,td {
+	padding: 0 0.83em;
+	text-align: center;
+}
+
+[contenteditable="true"], textarea {
+	display: block;
+	width: 100%;
+	position: relative;
+	font-family: Georgia,serif;
+	padding: 0.83rem;
+	min-height: 22em;
+	margin-bottom: 1.66em;
+	border: 1px dotted;
+	outline: 0 none;
+}
+[contenteditable="true"]:focus, textarea:focus {
+	border: 1px solid;
+	outline: 0 none;
+}
+[contenteditable]:after, textarea:after {
+	font-family: Consolas,monospace;
+	font-size: 0.8em;
+	content: attr(data-wordcount);
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 0.83em;
+	z-index: 999;
+	opacity: 0.5;
+}
+
+#usage {
+	z-index: 1000;
+	position: fixed;
+	width: 50%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: 1.66em;
+	background-color: #222;
+	color: rgba(255,255,255,0.7);
+	opacity: 0.9;
+	-webkit-transform: translateX(200%);
+	transform: translateX(200%);
+	transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+}
+#usage td {
+	padding: 0.2em;
+}
+#usage th {
+	padding-bottom: 0.83em;
+}
+#usage tr:hover {
+	background-color: #000;
+}
+.show-usage #usage {
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	box-shadow: 0 0 10em 10em white;
+}
+.show-usage [data-action="toggleModal"] {
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+}
