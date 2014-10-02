@@ -1,0 +1,19 @@
+{
+  "name": "romanizar.contenteditable",
+  "version": "1.0.0",
+  "authors": [
+    "Owais Al-Hashmi"
+  ],
+  "main": "romanizar.js",
+  "license": "CC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "~3.0.1"
+  }
+}
