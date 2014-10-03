@@ -47,7 +47,7 @@ function RomanizAr(node){
 				range.deleteContents();
 				range.insertNode(document.createTextNode(macros[me.data.key[0]]||' '));
 				sel.addRange(range);
-				sel.collapseToStart();
+				sel.collapseToEnd();
 			}
 			if (me.data.wordCount) {
 				self.element.dataset.wordcount=me.data.wordCount;
