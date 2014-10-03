@@ -1,5 +1,4 @@
 onmessage=function(e) {
-	var key;
 	if (e.data.test&&e.data.test.test(e.data.subject)) {
 		postMessage({
 			'key': e.data.subject.match(e.data.test)

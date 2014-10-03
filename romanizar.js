@@ -26,7 +26,7 @@ function RomanizAr(node){
 	self.element.addEventListener('keyup',function(e){
 		var sel = window.getSelection();
 		var range = document.createRange();
-		var text = e.target.textContent||e.target.value;
+		var text = e.target.textContent;
 		if (text=='') self.element.dataset.wordcount=0;
 		worker.postMessage({
 			'test': pattern,
