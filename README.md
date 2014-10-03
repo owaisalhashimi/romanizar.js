@@ -3,12 +3,20 @@
 Live Arabic Transliteration in <code>contenteditable</code> elements
 
 ### Usage
-<code class="language-javascript">var editor = new RomanizAr(document.querySelector('#example-html-element'));</code>
+```HTML
+<div id="example-html-element" contenteditable="true"></div>
+```
+
+
+```JavaScript
+var editor = new RomanizAr(document.querySelector('#example-html-element'));
+```
 
 ### Works On
-Tested on:
+Should be fine on modern browsers, but haven't tested all.
+Used with:
+ 
 - Chrome
 - Firefox
 
-Should be fine on other modern browsers.
 Uses web workers, but that code can easily be moved to main script.
