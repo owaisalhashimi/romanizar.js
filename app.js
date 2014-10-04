@@ -60,6 +60,6 @@ document.addEventListener('DOMContentLoaded',function(){
 		e.preventDefault();
 		hideSidebar();
 		r.focus();
-		document.execCommand('selectAll');
+		document.execCommand('selectAll', false, null);
 	}
 });
