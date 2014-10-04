@@ -13,9 +13,13 @@ var editor = new RomanizAr(document.querySelector('#example-html-element'));
 ```
 
 ### Works On
-Used with: 
+Used with:
+
 - Chrome
 - Firefox
-- Safari sets cursor before the inserted character, instead of after; any ideas?
+- Safari
+
+~~Safari sets cursor before the inserted character, instead of after; any ideas?~~ - Fixed
+
 Not tested on anything else.
 Uses web workers for performance, but that code can easily be moved to main script.
