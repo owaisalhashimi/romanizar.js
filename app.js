@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	var r = new RomanizAr(document.querySelector('#editor-1'));
 	var sidebar = document.querySelector('#usage');
 	var table = sidebar.querySelector('table');
-	var toggle = document.querySelector('[data-action="toggleModal"]');
+	var toggle = document.querySelector('[data-action="toggleSidebar"]');
 	var selector = document.querySelector('[data-action="selectAll"]');
 	var macros = [
 	  {key:'/AA/',value:'\u0100',arabic:'ا'},
@@ -61,5 +61,5 @@ document.addEventListener('DOMContentLoaded',function(){
 		hideSidebar();
 		r.focus();
 		document.execCommand('selectAll', false, null);
-	}
+	};
 });
