@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded',function(){
 	var r = new RomanizAr(document.querySelector('#editor-1'));
 	var r2 = new RomanizAr(document.querySelector('#editor-2'));
+	var activeEditor = r.element;
 	var sidebar = document.querySelector('#usage');
 	var table = sidebar.querySelector('table');
 	var toggle = document.querySelector('[data-action="toggleSidebar"]');
@@ -45,7 +46,9 @@ document.addEventListener('DOMContentLoaded',function(){
 	});
 	r.extend([
 		{pattern:'/tala/',text:'ta/cc//aa/l/aa/'},
-		{pattern:'/saw/',text:'/ss/allall/aa/hu /cc/alayhi wa sallam'}
+		{pattern:'/subh/',text:'sub/hh//aa/nhu wa /tala/'},
+		{pattern:'/saw/',text:'/ss/allall/aa/hu /cc/alayhi wa sallam'},
+		{pattern:'/rad/',text:'ra/dd/iall/aa/hu /cc/anhu'}
 	]);
 	toggle.onclick=toggleSidebar;
 	selector.onclick=selectAll;
@@ -53,6 +56,11 @@ document.addEventListener('DOMContentLoaded',function(){
 		if(e.keyCode===27) {
 			hideSidebar();
 		};
+	};
+	r.element.onfocus = updateActive;
+	r2.element.onfocus = updateActive;
+	function updateActive(e) {
+		activeEditor = e.target;
 	};
 	function hideSidebar(e) {
 		document.body.classList.remove('show-usage');
@@ -64,7 +72,9 @@ document.addEventListener('DOMContentLoaded',function(){
 	function selectAll(e) {
 		e.preventDefault();
 		hideSidebar();
-		r.element.focus();
+		if (activeEditor.focus) {
+			activeEditor.focus();
+		};
 		document.execCommand('selectAll', false, null);
 	};
 });

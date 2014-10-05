@@ -2,6 +2,8 @@
 
 Live Arabic Transliteration in <code>contenteditable</code> elements.
 
+![screenshot](screenshot.gif "screenshot")
+
 ### Usage
 
 #### Defined Macros (snippets)
