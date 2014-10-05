@@ -45,10 +45,8 @@ document.addEventListener('DOMContentLoaded',function(){
 		table.appendChild(tr);
 	});
 	r.extend([
-		{pattern:'/tala/',text:'ta/cc//aa/l/aa/'},
-		{pattern:'/subh/',text:'sub/hh//aa/nhu wa /tala/'},
-		{pattern:'/saw/',text:'/ss/allall/aa/hu /cc/alayhi wa sallam'},
-		{pattern:'/rad/',text:'ra/dd/iall/aa/hu /cc/anhu'}
+		{pattern:'/slm/',text:'Al-Sal/aa/mu /cc/alaykum'},
+		{pattern:'/wslm/',text:'Wa /cc/alaykum Al-Sal/aa/m'}
 	]);
 	toggle.onclick=toggleSidebar;
 	selector.onclick=selectAll;
