@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded',function(){
 	var r = new RomanizAr(document.querySelector('#editor-1'));
+	var r2 = new RomanizAr(document.querySelector('#editor-2'));
 	var sidebar = document.querySelector('#usage');
 	var table = sidebar.querySelector('table');
 	var toggle = document.querySelector('[data-action="toggleSidebar"]');
@@ -42,6 +43,10 @@ document.addEventListener('DOMContentLoaded',function(){
 		tr.appendChild(tda);
 		table.appendChild(tr);
 	});
+	r.extend([
+		{pattern:'/tala/',text:'ta/cc//aa/l/aa/'},
+		{pattern:'/saw/',text:'/ss/allall/aa/hu /cc/alayhi wa sallam'}
+	]);
 	toggle.onclick=toggleSidebar;
 	selector.onclick=selectAll;
 	document.body.onkeyup=function(e){
@@ -59,7 +64,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	function selectAll(e) {
 		e.preventDefault();
 		hideSidebar();
-		r.focus();
+		r.element.focus();
 		document.execCommand('selectAll', false, null);
 	};
 });

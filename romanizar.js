@@ -1,8 +1,8 @@
 function RomanizAr(node) {
 	'use strict';
-	var worker = new Worker('worker.js');
+	var worker = new Worker('/worker.js');
 	var self = this;
-	var pattern = /\/[aeodhstzc,]{2}\//i;
+	var pattern = /\/[\w,]+\//ig;
 	var macros = {
 		'/AA/': '\u0100',
 		'/aa/': '\u0101',
@@ -22,6 +22,16 @@ function RomanizAr(node) {
 		'/zz/': '\u1E93',
 		'/cc/': '\u02BF',
 		'/,,/': '\u02BE'
+	};
+	RomanizAr.prototype.macros = macros;
+	self.extend = function(extensions){
+		extensions.forEach(function(extension){
+			var matches = extension.text.match(pattern);
+			matches.forEach(function(match){
+				extension.text = extension.text.replace(match,self.macros[match]);
+			});
+			self.macros[extension.pattern] = extension.text;
+		});
 	};
 	self.element = node;
 	self.element.addEventListener('keyup', function(e) {
@@ -44,7 +54,7 @@ function RomanizAr(node) {
 		if (me.data.key) {
 			var sn = sel.focusNode;
 			var so = sel.focusOffset;
-			var node = document.createTextNode(macros[me.data.key[0]] || ' ');
+			var node = document.createTextNode(self.macros[me.data.key[0]] || ' ');
 			range.setStart(sn, so - (me.data.key[0].length));
 			range.setEnd(sn, so);
 			range.deleteContents();
@@ -59,5 +69,8 @@ function RomanizAr(node) {
 			self.element.dataset.wordcount = me.data.wordCount;
 		}
 	};
-	return self.element;
-}
+	return {
+		element: self.element,
+		extend: self.extend
+	};
+};
