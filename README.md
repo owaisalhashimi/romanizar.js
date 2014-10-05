@@ -48,12 +48,15 @@ This is all you need for basic Arabic romanization.
 ```JavaScript
 editor.extend(mySnippets);
 ```
+
 <code>snippets</code> must be an array of one or more objects that each define a macro __pattern__, delimted by '/', and the replacement __text__ it should expand to, for example:
-```JavaAcript
+
+```JavaScript
 var mySnippets = [
     { pattern: '/kitab/', text: 'kit/aa/b' }
 ];
 ```
+
 Notice how the replacement text can contain existing macros, which will be expanded to their respective full texts.
 
 Note: adding macros to any instance of RomanizAr enables them in all instances. 
