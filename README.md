@@ -76,4 +76,4 @@ Uses web workers for performance, but that code can easily be moved to main scri
 
 ### License
 
-Unlicense, see ```license.md```
+GPLv2.0, see ```license.md```

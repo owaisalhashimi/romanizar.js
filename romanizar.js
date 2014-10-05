@@ -1,3 +1,9 @@
+/**!
+ * Live Arabic transliteration in contenteditable HTML elements.
+ * @author: Owais Al-Hashimi
+ * @param {HTMLElement} node HTML element with atribute "contenteditable"="true".
+ * @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&dn=gpl-2.0.txt GPLv2.0
+ */
 function RomanizAr(node) {
 	'use strict';
 	var worker = new Worker('/worker.js');
@@ -74,3 +80,6 @@ function RomanizAr(node) {
 		extend: self.extend
 	};
 };
+/**
+ * @license-end
+ */
