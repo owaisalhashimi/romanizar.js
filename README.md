@@ -68,7 +68,7 @@ Note: adding macros to any instance of RomanizAr enables them in all instances.
 - Chrome
 - Firefox
 - Safari
- ~~Safari sets cursor before the inserted character, instead of after; any ideas?~~ - Fixed
+- Opera
 
 No support for IE TextRange planned.
 
