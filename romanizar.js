@@ -60,7 +60,7 @@ function RomanizAr(node) {
 		if (me.data.key) {
 			var sn = sel.focusNode;
 			var so = sel.focusOffset;
-			var node = document.createTextNode(self.macros[me.data.key[0]] || ' ');
+			var node = document.createTextNode(self.macros[me.data.key[0]] || me.data.key[0]);
 			range.setStart(sn, so - (me.data.key[0].length));
 			range.setEnd(sn, so);
 			range.deleteContents();
