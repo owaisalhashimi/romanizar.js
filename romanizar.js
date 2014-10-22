@@ -48,7 +48,6 @@ function RomanizAr(node) {
 		});
 	});
 	worker.onmessage = function(me) {
-		console.log(me.data.key);
 		if (me.data.key && (me.data.key in self.macros) ) {
 			var sel = window.getSelection();
 			var range = document.createRange();
