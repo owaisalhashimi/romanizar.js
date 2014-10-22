@@ -150,19 +150,6 @@ kbd {
 	outline: 0 none;
 }
 
-[contenteditable]:after {
-	font-family: Consolas,monospace;
-	font-size: 0.8em;
-	content: attr(data-wordcount);
-	display: block;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	padding: 0.83em;
-	z-index: 999;
-	opacity: 0.5;
-}
-
 [contenteditable]::selection,
 [contenteditable] *::selection  {
 	background-color: DodgerBlue;

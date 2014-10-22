@@ -8,7 +8,7 @@ function RomanizAr(node) {
 	'use strict';
 	var worker = new Worker('/worker.js');
 	var self = this;
-	var pattern = /\/[\w,]+\//ig;
+	var pattern = /\/[A-Z,]+\//ig;
 	var macros = {
 		'/AA/': '\u0100',
 		'/aa/': '\u0101',
@@ -42,26 +42,20 @@ function RomanizAr(node) {
 	self.element = node;
 	self.element.addEventListener('keyup', function(e) {
 		var text = e.target.textContent;
-		if (text === '') self.element.dataset.wordcount = 0;
 		worker.postMessage({
 			'test': pattern,
 			'subject': text
 		});
-		if (/\s/.test(String.fromCharCode(e.keyCode))) {
-			worker.postMessage({
-				'get': 'wordCount',
-				'text': text
-			});
-		}
 	});
 	worker.onmessage = function(me) {
-		var sel = window.getSelection();
-		var range = document.createRange();
-		if (me.data.key) {
+		console.log(me.data.key);
+		if (me.data.key && (me.data.key in self.macros) ) {
+			var sel = window.getSelection();
+			var range = document.createRange();
 			var sn = sel.focusNode;
 			var so = sel.focusOffset;
-			var node = document.createTextNode(self.macros[me.data.key[0]] || me.data.key[0]);
-			range.setStart(sn, so - (me.data.key[0].length));
+			var node = document.createTextNode(self.macros[me.data.key]);
+			range.setStart(sn, so - (me.data.key.length));
 			range.setEnd(sn, so);
 			range.deleteContents();
 			range.insertNode(node);
@@ -70,9 +64,6 @@ function RomanizAr(node) {
 				sel.extend(node, node.length);
 			};
 			sel.collapseToEnd();
-		}
-		if (me.data.wordCount) {
-			self.element.dataset.wordcount = me.data.wordCount;
 		}
 	};
 	return {
