@@ -1,4 +1,4 @@
-/**!
+/*
  * Live Arabic transliteration in contenteditable HTML elements.
  * @author: Owais Al-Hashimi
  * @param {HTMLElement} node HTML element with attribute "contenteditable"="true".
@@ -70,6 +70,6 @@ function RomanizAr(node) {
 		extend: self.extend
 	};
 };
-/**
+/*
  * @license-end
  */
