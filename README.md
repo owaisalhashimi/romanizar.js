@@ -18,6 +18,8 @@ Live Arabic Transliteration in <code>contenteditable</code> elements.
 | <code>/oo/</code> | &#363; | و |
 | <code>/DD/</code> | &#7692; | ض |
 | <code>/dd/</code> | &#7693; | ض |
+| <code>/GG/</code> | &#288; | غ |
+| <code>/gg/</code> | &#289; | غ |
 | <code>/HH/</code> | &#7716; | ح |
 | <code>/hh/</code> | &#7717; | ح |
 | <code>/SS/</code> | &#7778; | ص |
