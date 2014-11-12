@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded',function(){
 	  {key:'/oo/',value:'\u016B',arabic:'و'},
 	  {key:'/DD/',value:'\u1E0C',arabic:'ض'},
 	  {key:'/dd/',value:'\u1E0D',arabic:'ض'},
+	  {key:'/GG/',value:'\u0121',arabic:'غ'},
+	  {key:'/gg/',value:'\u0120',arabic:'غ'},
 	  {key:'/HH/',value:'\u1E24',arabic:'ح'},
 	  {key:'/hh/',value:'\u1E25',arabic:'ح'},
 	  {key:'/SS/',value:'\u1E62',arabic:'ص'},
