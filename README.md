@@ -10,26 +10,32 @@ Live Arabic Transliteration in <code>contenteditable</code> elements.
 
 | Macro | Inserts | Represents |
 --------|---------|-------------
-| <code>/AA/</code> | &#256; | ا |
-| <code>/aa/</code> | &#257; | ا |
-| <code>/EE/</code> | &#298; | ي |
-| <code>/ee/</code> | &#299; | ي |
-| <code>/OO/</code> | &#362; | و |
-| <code>/oo/</code> | &#363; | و |
-| <code>/DD/</code> | &#7692; | ض |
-| <code>/dd/</code> | &#7693; | ض |
-| <code>/GG/</code> | &#288; | غ |
-| <code>/gg/</code> | &#289; | غ |
-| <code>/HH/</code> | &#7716; | ح |
-| <code>/hh/</code> | &#7717; | ح |
-| <code>/SS/</code> | &#7778; | ص |
-| <code>/ss/</code> | &#7779; | ص |
-| <code>/TT/</code> | &#7788; | ط |
-| <code>/tt/</code> | &#7789; | ط |
-| <code>/ZZ/</code> | &#7826; | ظ |
-| <code>/zz/</code> | &#7827; | ظ |
-| <code>/cc/</code> | &#703; | ع |
-| <code>/,,/</code> | &#702; | ء |
+|/,,/| ء | ʾ |
+|/AA/| آ | Ā |
+|/aa/|   | ā |
+|/EE/| ي | Ī |
+|/ee/|   | ī |
+|/OO/| و | Ū |
+|/oo/|   | ū |
+|/HH/| ح | Ḥ |
+|/hh/|   | ḥ |
+|/KH/| خ | Ḵ |
+|/kh/|   | ḵ |
+|/DH/| ذ | Ḏ |
+|/dh/|   | ḍ |
+|/SH/| ش | Š |
+|/sh/|   | š |
+|/SS/| ص | Ṣ |
+|/ss/|   | ṣ |
+|/DD/| ض | Ḍ |
+|/dd/|   | ḍ |
+|/TT/| ط | Ṭ |
+|/tt/|   | ṭ |
+|/ZZ/| ظ | Ẓ |
+|/zz/|   | ẓ |
+|/cc/| ع | ʿ |
+|/GH/| غ | Ġ |
+|/gh/|   | ġ |
 
 #### In your HTML
 
@@ -42,7 +48,7 @@ Live Arabic Transliteration in <code>contenteditable</code> elements.
 #### In your JavaScript
 
 ```JavaScript
-var editor = new RomanizAr(document.querySelector('#my-editor-1'));
+var editor = romanizar('#my-editor-1');
 ```
 
 This is all you need for basic Arabic romanization.
@@ -57,26 +63,18 @@ editor.extend(mySnippets);
 
 ```JavaScript
 var mySnippets = [
-    { pattern: '/kitab/', text: 'kit/aa/b' }
+    { pattern: '/greet/', text: 'Hello' }
 ];
 ```
 
-Notice how the replacement text can contain existing macros, which will be expanded to their respective full texts.
-
-Note: adding macros to any instance of RomanizAr enables them in all instances. 
-
 ### Works On
-
 - Chrome
 - Firefox
 - Safari
-- Opera
+- Newest IE (untested)
 
 No support for IE TextRange planned.
 
-Not tested on anything else.
-
-Uses web workers for performance, but that code can easily be moved to main script.
 
 ### License
 
