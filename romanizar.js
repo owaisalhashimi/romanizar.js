@@ -1,15 +1,10 @@
-/*
- * Live Arabic transliteration in contenteditable HTML elements.
- * @author: Owais Al-Hashimi
- * @param {HTMLElement} node HTML element with attribute "contenteditable"="true".
- * @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&dn=gpl-2.0.txt GPLv2.0
- */
-function RomanizAr(node) {
-	'use strict';
-	var worker = new Worker('/worker.js');
-	var self = this;
-	var pattern = /\/[A-Z,]+\//ig;
-	var macros = {
+var romanizar = (function(el){
+	"use strict";
+	var whenEdited = [];
+	var editHook = null;
+	var editor = document.querySelector(el);
+	var macros = 
+	{
 		"/,,/": "\u02BE",
 		"/AA/": "\u0100",
 		"/aa/": "\u0101",
@@ -35,49 +30,70 @@ function RomanizAr(node) {
 		"/zz/": "\u1E93",
 		"/cc/": "\u02BF",
 		"/GH/": "\u0120",
-		"/gh/": "\u0121"
+		"/gh/": "\u0121",
+		"/saw/": "\uFDFA",
+		"/bsm/": "\uFDFD"
 	};
-	RomanizAr.prototype.macros = macros;
-	self.extend = function(extensions){
-		extensions.forEach(function(extension){
-			var matches = extension.text.match(pattern);
-			matches.forEach(function(match){
-				extension.text = extension.text.replace(match,self.macros[match]);
+	editor.setAttribute("contenteditable","true");
+	editor.addEventListener('input',oninput);
+	function oninput(ev) {
+		var sel, range;
+		var matches = ev.target.textContent.match(/\/[A-Za-z,]{2,}\//g);
+		if (matches) {
+			expandAllMatches(matches);
+		};
+		clearTimeout(editHook);
+		editHook = setTimeout(function(){
+			whenEdited.forEach(function(fn){
+				if (typeof(fn)==='function') {
+					fn.call(null,matches);
+				};
 			});
-			self.macros[extension.pattern] = extension.text;
-		});
+		},500);
 	};
-	self.element = node;
-	self.element.addEventListener('keyup', function(e) {
-		var text = e.target.textContent;
-		worker.postMessage({
-			'test': pattern,
-			'subject': text
-		});
-	});
-	worker.onmessage = function(me) {
-		if (me.data.key && (me.data.key in self.macros) ) {
-			var sel = window.getSelection();
-			var range = document.createRange();
-			var sn = sel.focusNode;
-			var so = sel.focusOffset;
-			var node = document.createTextNode(self.macros[me.data.key]);
-			range.setStart(sn, so - (me.data.key.length));
-			range.setEnd(sn, so);
+
+	function expandAllMatches(matches) {
+		var sel, range, text;
+		matches.forEach(function(match){
+			sel = window.getSelection();
+			range = document.createRange();
+			text = document.createTextNode(macros[match]||'');
+			range.setStart(sel.focusNode,sel.focusOffset-match.length);
+			range.setEnd(sel.focusNode,sel.focusOffset);
 			range.deleteContents();
-			range.insertNode(node);
+			range.insertNode(text);
+			sel.removeAllRanges();
 			sel.addRange(range);
-			if (!sel.containsNode(node, false)) {
-				sel.extend(node, node.length);
+			if (!sel.containsNode(text,false)) {
+				sel.extend(text,text.length);
 			};
 			sel.collapseToEnd();
+		});
+	};
+
+
+	return {
+		extend: function(exts) {
+			exts.forEach(function(ext){
+				var val = ext.text;
+				var matches = val.match(/\/[A-za-z,]{2,}\//g);
+				matches.forEach(function(match){
+					val = val.replace(match,macros[match]||'');
+				});
+				macros[ext.macro] = val;
+			});
+		},
+		macros: function() {
+			return macros;
+		},
+		el: editor,
+		onedit: function(fn) {
+			whenEdited.push(fn);
+		},
+		offedit: function(fn) {
+			var index = whenEdited.indexOf(fn);
+			if(index) delete whenEdited[index];
 		}
 	};
-	return {
-		element: self.element,
-		extend: self.extend
-	};
-};
-/*
- * @license-end
- */
+
+});

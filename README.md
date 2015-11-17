@@ -40,7 +40,7 @@ Live Arabic Transliteration in <code>contenteditable</code> elements.
 #### In your HTML
 
 ```HTML
-<div id="my-editor-1" contenteditable="true"></div>
+<div id="my-editor-1"></div>
 ...
 <script src="romanizar.js"></script>
 ```
@@ -59,12 +59,27 @@ This is all you need for basic Arabic romanization.
 editor.extend(mySnippets);
 ```
 
-<code>snippets</code> must be an array of one or more objects that each define a macro __pattern__, delimited by '/', and the replacement __text__ it should expand to, for example:
+<code>snippets</code> must be an array of one or more objects that each define a macro __macro__ (pattern), delimited by '/', and the replacement __text__ it should expand to, for example:
 
 ```JavaScript
 var mySnippets = [
-    { pattern: '/greet/', text: 'Hello' }
+    { macro: '/greet/', text: 'Hello' }
 ];
+```
+
+
+### Post Editing Hook
+
+You can perform custom actions by adding functions to be called every time text is edited. Just add your callback:
+
+```JavaScript
+editor.onedit(callback);
+```
+
+And to remove the action:
+
+```JavaScript
+editor.offedit(callback);
 ```
 
 ### Works On
