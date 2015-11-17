@@ -59,7 +59,7 @@ This is all you need for basic Arabic romanization.
 editor.extend(mySnippets);
 ```
 
-<code>snippets</code> must be an array of one or more objects that each define a macro __macro__ (pattern), delimited by '/', and the replacement __text__ it should expand to, for example:
+<code>snippets</code> must be an array of one or more objects that each define a __macro__ (pattern), delimited by '/', and the replacement __text__ it should expand to, for example:
 
 ```JavaScript
 var mySnippets = [
