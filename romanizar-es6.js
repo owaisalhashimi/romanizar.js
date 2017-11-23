@@ -3,6 +3,7 @@ function romanizar(selector) {
 	const ptrn = new RegExp("\/[A-Z,a-z]{2,7}\/", "g");
 	const replacements = {
 		"/,,/": { rom:"\u02BE", ar: "ء"},
+		"/AA/": { rom:"\u0100", ar: "آ"},
 		"/aa/": { rom:"\u0101", ar: "آ"},
 		"/EE/": { rom:"\u012A", ar: "ي"},
 		"/ee/": { rom:"\u012B", ar: "ي"},
