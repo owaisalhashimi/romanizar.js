@@ -9,7 +9,7 @@ ES6 module version of ```romanizar.js```
 Import the module into your script:
 
 ```JavaScript
-import { romanizar } from '/romanizar-es6.js';
+import { romanizar } from '/path/to/romanizar-es6.js';
 ```
 
 Make an element into an Arabic romanization enabled editor:
