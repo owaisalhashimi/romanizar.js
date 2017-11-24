@@ -2,6 +2,8 @@
 
 ES6 module version of ```romanizar.js```
 
+![Screenshot of RomanizAr in action](/screenshot.gif)
+
 ## Usage
 
 Import the module into your script:
