@@ -24,4 +24,8 @@ And in your script:
 const editor = romanizar('#editor');
 ```
 
-More details to follow ...
+This is all that's needed to enable typing with romanization.
+
+## API & Customization
+
+To come ...

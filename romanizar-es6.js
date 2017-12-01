@@ -68,14 +68,14 @@ function romanizar(selector) {
 		};
 	};
 
-	function onedit(match,fn) {
+	function on(match,fn) {
 		if (!onEditListeners[match]) {
 			onEditListeners[match] = [];
 		};
 		onEditListeners[match].push(fn);
 	};
 
-	function offedit(match,fn) {
+	function off(match,fn) {
 		const i = (onEditListeners[match]) ? onEditListeners[match].indexOf(fn) : undefined;
 		if (i!==undefined) {
 			onEditListeners[match].splice(i,1);
@@ -92,6 +92,6 @@ function romanizar(selector) {
 
 	el.addEventListener('input', oninput);
 
-	return { el, onedit, offedit, extend, getReplacementTable };
+	return { el, on, off, extend, getReplacementTable };
 };
 export { romanizar };

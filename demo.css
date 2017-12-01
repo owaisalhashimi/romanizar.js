@@ -1,0 +1,56 @@
+html,body{min-height:100%;height:100%;margin:0;}
+body{font-family:sans-serif;vertical-align:baseline;
+	line-height:1.4;background-color:#fff;color:#454545;}
+a:link,a:visited,a:hover,a:focus,a:active{text-decoration:none;color:blue;}
+main{width:80ch;max-width:calc(100% - 1.4em);margin:.7em auto;}
+
+.page-header h1 {
+	margin: 0;
+	padding: .7rem;
+	font-size: 2.8em;
+	text-align: center;
+}
+.page-footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	text-align: center;
+}
+.toolbar {
+	margin: .7em 0;
+	padding: 0;
+}
+.toolbar > ul {
+	margin: 0;
+	padding: 0;
+	list-style: inside none;
+	display: flex;
+	justify-content: space-between;
+}
+.toolbar > ul > li {
+	margin: 0;
+}
+.dl-changed {
+	animation: pulse .3s 3 alternate;
+}
+#editor{min-height:7em;padding:1.4em;
+	border:1px solid #aaa;white-space:pre-wrap;}
+#editor:empty:not(:focus):before
+{content:"Try it out. Type here.";color:#bbb;}
+#editor:focus{outline:1px solid;}
+#textcount{color:#777;}
+#dl-link {
+	display: block;
+	padding: 0 .35em;
+	text-decoration: none;
+	color: black;
+	border: 1px solid;
+	border-radius: .17em;
+}
+#dl-link[href=""] {
+	display: none;
+}
+
+@keyframes pulse {
+	to { transform: scale(1.3);}
+}

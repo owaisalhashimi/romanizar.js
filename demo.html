@@ -4,26 +4,57 @@
 	<meta charset="UTF-8">
 	<meta name="viewport"	content="width=device-width,initial-scale=1">
 	<title>RomanizAr ES6 Demo</title>
+	<link rel="stylesheet" href="demo.css">
 	<style>
-		html,body{min-height:100%;height:100%;margin:0;}
-		body{font-family:Arial,sans-serif;vertical-align:baseline;
-			line-height:1.4;background-color:#fff;color:#454545;}
-		main{width:80ch;margin:1.4em auto;}
-		#editor{min-height:7em;padding:1.4em;border:1px solid;}
+
 	</style>
 </head>
 <body>
+	<header class="page-header">
+		<h1><a href="/demo.html">RomanizAr</a></h1>
+	</header>
 	<main>
 		<div id="editor"></div>
+		<menu class="toolbar">
+			<ul>
+				<li><output id="textcount" for="editor"></output> </li>
+				<li> <a href="" id="dl-link" download="">download document</a> </li>
+			</ul>
+		</menu>
 	</main>
+	<footer class="page-footer">
+		<a href="https://github.com/owaisalhashimi/romanizar.js/tree/es6"><img width="32" height="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" alt=""></a>
+	</footer>
 	<script type="module">
-		import { romanizar } from '/romanizar-es6.js';
-		window.romanizar = romanizar;
-	</script>
-	<script>
-		document.addEventListener('DOMContentLoaded', (e) => {
-			const editor = romanizar('#editor');
+import { wait, charcount, wordcount, txtfile } from './utils.js';
+import { romanizar } from './romanizar-es6.js';
+document.addEventListener('DOMContentLoaded', (e) => {
+	const editor = romanizar('#editor');
+	const count = document.querySelector('#textcount');
+	const dl_link = document.querySelector('#dl-link');
+
+	async function textcount() {
+		const txt = editor.el.textContent;
+		count.textContent = `Last count: characters: ${charcount(txt)}, words: ${wordcount(txt)}`;
+	};
+	function ui_class_toggle(el,c,ms=3000) {
+		el.classList.toggle(c);
+		wait(ms).then(()=>{
+			el.classList.toggle(c);
 		});
+	};
+	function export_txt() {
+		txtfile(editor.el.textContent).then((url) => {
+			URL.revokeObjectURL(dl_link.dataset.lastUrl); 
+			dl_link.dataset.lastUrl = url;
+			dl_link.href = url;
+			dl_link.setAttribute('download', `romanizar-export-${new Date().toISOString()}.txt`);
+			ui_class_toggle(dl_link,'dl-changed');
+		});
+	};
+	editor.on('/count/', textcount);
+	editor.on('/export/',export_txt);
+});
 	</script>
 </body>
 </html>
